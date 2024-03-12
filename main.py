@@ -9,9 +9,6 @@ import nltk
 nltk.download('stopwords')
 stemmer = nltk.SnowballStemmer("english")
 from nltk.corpus import stopwords
-from joblib import dump
-
-dump(clf, 'decision_tree_model.joblib')
 import string
 stopword=set(stopwords.words('english'))
 data = pd.read_csv("twitter.csv")
@@ -49,6 +46,10 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random
 clf = DecisionTreeClassifier()
 clf.fit(X_train,y_train)
 clf.score(X_test,y_test)
+
+from joblib import dump
+
+dump(clf, 'decision_tree_model.joblib')
 
 def hate_speech_detection():
     # import streamlit as st
